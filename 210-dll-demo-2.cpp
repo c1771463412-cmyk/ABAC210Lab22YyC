@@ -3,8 +3,6 @@
 #include <iostream>
 using namespace std;
 
-const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
-
 class DoublyLinkedList {
 private:
     struct Node {
@@ -208,20 +206,102 @@ public:
 // Driver program
 int main() {
     DoublyLinkedList list;
-    int size = rand() % (MAX_LS-MIN_LS+1) + MIN_LS;
 
-    for (int i = 0; i < size; ++i)
-        list.push_back(rand() % (MAX_NR-MIN_NR+1) + MIN_NR);
-    cout << "List forward: ";
+    // Create a list with five nodes
+    list.push_back(10);
+    list.push_back(20);
+    list.push_back(30);
+    list.push_back(40);
+    list.push_back(50);
+
+    cout << "Original list: ";
+    list.print();
+
+    // Test deleting a middle node by position
+    cout << "\nDelete position 2:" << endl;
+    list.delete_pos(2);
+    list.print();
+
+    // Test deleting the head by position
+    cout << "\nDelete position 0 (head):" << endl;
+    list.delete_pos(0);
+    list.print();
+
+    // Test deleting the tail by position
+    cout << "\nDelete position 2 (tail):" << endl;
+    list.delete_pos(2);
+    list.print();
+
+    // Test pop_front()
+    cout << "\nPop front:" << endl;
+    list.pop_front();
+    list.print();
+
+    // Test pop_back()
+    cout << "\nPop back:" << endl;
+    list.pop_back();
+    list.print();
+
+    // Test deleting from an empty list
+    cout << "\nTest empty list:" << endl;
+    list.pop_front();
+    list.pop_back();
+    list.delete_pos(0);
+    list.print();
+
+    // Test deleting an invalid position
+    cout << "\nTest invalid positions:" << endl;
+    list.push_back(60);
+    list.push_back(70);
+    list.delete_pos(-1);
+    list.delete_pos(10);
+    list.print();
+
+    // Test delete_val() with the head node
+    cout << "\nDelete value 60 (head):" << endl;
+    list.delete_val(60);
+    list.print();
+
+    // Test delete_val() with the tail node
+    cout << "\nDelete value 70 (tail):" << endl;
+    list.delete_val(70);
+    list.print();
+
+    // Test delete_val() with a middle node
+    cout << "\nDelete middle value 90:" << endl;
+    list.push_back(80);
+    list.push_back(90);
+    list.push_back(100);
+    list.delete_val(90);
+    list.print();
+
+    // Test forward and backward traversal
+    cout << "\nList forward: ";
     list.print();
 
     cout << "List backward: ";
     list.print_reverse();
 
-    cout << "Deleting list, then trying to print.\n";
-    list.~DoublyLinkedList();
-    cout << "List forward: ";
-    list.print();
+    // Test pop_front() with only one node
+    cout << "\nPop front with one node:" << endl;
+    DoublyLinkedList test1;
+    test1.push_back(10);
+    test1.pop_front();
+    test1.print();
+
+    // Test pop_back() with only one node
+    cout << "\nPop back with one node:" << endl;
+    DoublyLinkedList test2;
+    test2.push_back(20);
+    test2.pop_back();
+    test2.print();
+
+    // Test delete_pos() with only one node
+    cout << "\nDelete position 0 with one node:" << endl;
+    DoublyLinkedList test3;
+    test3.push_back(30);
+    test3.delete_pos(0);
+    test3.print();
 
     return 0;
 }
