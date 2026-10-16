@@ -1,4 +1,3 @@
-
 // COMSC-210-5293 | Lab 22 | Yuyi Chen
 
 #include <iostream>
